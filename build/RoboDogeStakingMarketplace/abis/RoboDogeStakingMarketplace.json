@@ -13,11 +13,6 @@
       },
       {
         "internalType": "uint256",
-        "name": "_mintFee",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
         "name": "_minTokenBalance",
         "type": "uint256"
       },
@@ -120,7 +115,7 @@
       },
       {
         "indexed": false,
-        "internalType": "enum RoboDogeMarketplace.Currency",
+        "internalType": "enum RoboDogeStakingNftMarketplace.Currency",
         "name": "currency",
         "type": "uint8"
       }
@@ -151,7 +146,7 @@
       },
       {
         "indexed": false,
-        "internalType": "enum RoboDogeMarketplace.Currency",
+        "internalType": "enum RoboDogeStakingNftMarketplace.Currency",
         "name": "currency",
         "type": "uint8"
       }
@@ -201,7 +196,7 @@
       },
       {
         "indexed": false,
-        "internalType": "enum RoboDogeMarketplace.Currency",
+        "internalType": "enum RoboDogeStakingNftMarketplace.Currency",
         "name": "currency",
         "type": "uint8"
       }
@@ -232,7 +227,7 @@
       },
       {
         "indexed": false,
-        "internalType": "enum RoboDogeMarketplace.Currency",
+        "internalType": "enum RoboDogeStakingNftMarketplace.Currency",
         "name": "currency",
         "type": "uint8"
       }
@@ -382,7 +377,7 @@
         "type": "uint256"
       },
       {
-        "internalType": "enum RoboDogeMarketplace.Currency",
+        "internalType": "enum RoboDogeStakingNftMarketplace.Currency",
         "name": "currency",
         "type": "uint8"
       }
@@ -501,55 +496,6 @@
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "_imageHash",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_metadata",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_count",
-        "type": "uint256"
-      }
-    ],
-    "name": "mint",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "mintFee",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "mintFeeReceived",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "uint256",
         "name": "_tokenId",
         "type": "uint256"
@@ -592,7 +538,7 @@
         "type": "uint256"
       },
       {
-        "internalType": "enum RoboDogeMarketplace.Currency",
+        "internalType": "enum RoboDogeStakingNftMarketplace.Currency",
         "name": "currency",
         "type": "uint8"
       }
@@ -644,7 +590,7 @@
         "type": "uint256"
       },
       {
-        "internalType": "enum RoboDogeMarketplace.Currency",
+        "internalType": "enum RoboDogeStakingNftMarketplace.Currency",
         "name": "_currency",
         "type": "uint8"
       }
@@ -718,7 +664,7 @@
         "type": "uint256"
       },
       {
-        "internalType": "enum RoboDogeMarketplace.Currency",
+        "internalType": "enum RoboDogeStakingNftMarketplace.Currency",
         "name": "_currency",
         "type": "uint8"
       }
@@ -771,50 +717,11 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_duration",
-        "type": "uint256"
-      }
-    ],
-    "name": "updateMaxAuctionDuration",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_bidRise",
-        "type": "uint256"
-      }
-    ],
-    "name": "updateMinBidRise",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
         "name": "_minTokenBalance",
         "type": "uint256"
       }
     ],
     "name": "updateMinimumTokenBalance",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_mintFee",
-        "type": "uint256"
-      }
-    ],
-    "name": "updateMintFee",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -845,7 +752,7 @@
         "type": "uint256"
       },
       {
-        "internalType": "enum RoboDogeMarketplace.Currency",
+        "internalType": "enum RoboDogeStakingNftMarketplace.Currency",
         "name": "_currency",
         "type": "uint8"
       }

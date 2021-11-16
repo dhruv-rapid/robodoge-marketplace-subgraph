@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: RoboDogeNft
@@ -17,11 +17,11 @@ dataSources:
         - Nft
       abis:
         - name: RoboDogeNft
-          file: ./abis/RoboDogeNft.json
+          file: RoboDogeNft/abis/RoboDogeNft.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/nft.mapping.ts
+      file: RoboDogeNft/RoboDogeNft.wasm
   - kind: ethereum/contract
     name: RoboDogeMarketplace
     network: bsc
@@ -39,7 +39,7 @@ dataSources:
         - Bid
       abis:
         - name: RoboDogeMarketplace
-          file: ./abis/RoboDogeMarketplace.json
+          file: RoboDogeMarketplace/abis/RoboDogeMarketplace.json
       eventHandlers:
         - event: AuctionCancel(indexed uint256,indexed uint256)
           handler: handleAuctionCancel
@@ -57,7 +57,7 @@ dataSources:
           handler: handleNFTSalePriceUpdated
         - event: NFTSold(indexed uint256,indexed uint256,uint256,uint8)
           handler: handleNFTSold
-      file: ./src/marketplace.mapping.ts
+      file: RoboDogeMarketplace/RoboDogeMarketplace.wasm
   - kind: ethereum/contract
     name: RoboDogeStakingNft
     network: bsc
@@ -73,11 +73,11 @@ dataSources:
         - StakingNft
       abis:
         - name: RoboDogeStakingNft
-          file: ./abis/RoboDogeStakingNft.json
+          file: RoboDogeStakingNft/abis/RoboDogeStakingNft.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/stakingNft.mapping.ts
+      file: RoboDogeStakingNft/RoboDogeStakingNft.wasm
   - kind: ethereum/contract
     name: RoboDogeStakingMarketplace
     network: bsc
@@ -95,7 +95,7 @@ dataSources:
         - StakingBid
       abis:
         - name: RoboDogeStakingMarketplace
-          file: ./abis/RoboDogeStakingMarketplace.json
+          file: RoboDogeStakingMarketplace/abis/RoboDogeStakingMarketplace.json
       eventHandlers:
         - event: AuctionCancel(indexed uint256,indexed uint256)
           handler: handleAuctionCancel
@@ -113,7 +113,7 @@ dataSources:
           handler: handleNFTSalePriceUpdated
         - event: NFTSold(indexed uint256,indexed uint256,uint256,uint8)
           handler: handleNFTSold
-      file: ./src/stakingMarketplace.mapping.ts
+      file: RoboDogeStakingMarketplace/RoboDogeStakingMarketplace.wasm
   - kind: ethereum/contract
     name: RoboDogeItemRemover
     network: bsc
@@ -131,11 +131,11 @@ dataSources:
         - Nft
       abis:
         - name: RoboDogeItemRemover
-          file: ./abis/RoboDogeItemRemover.json
+          file: RoboDogeItemRemover/abis/RoboDogeItemRemover.json
       eventHandlers:
         - event: RemoveNft(uint256)
           handler: handleRemoveNft
-      file: ./src/itemRemover.mapping.ts
+      file: RoboDogeItemRemover/RoboDogeItemRemover.wasm
   - kind: ethereum/contract
     name: RoboDogeTAUniversity
     network: bsc
@@ -152,7 +152,7 @@ dataSources:
         - UserTutorials
       abis:
         - name: RoboDogeTAUniversity
-          file: ./abis/RoboDogeTAUniversity.json
+          file: RoboDogeTAUniversity/abis/RoboDogeTAUniversity.json
       eventHandlers:
         - event: ItemAdded(uint256,string,uint256,uint8)
           handler: handleItemAdded
@@ -162,4 +162,4 @@ dataSources:
           handler: handleItemRemoved
         - event: ItemBought(uint256)
           handler: handleItemBought
-      file: ./src/tutorial.mapping.ts
+      file: RoboDogeTAUniversity/RoboDogeTAUniversity.wasm
