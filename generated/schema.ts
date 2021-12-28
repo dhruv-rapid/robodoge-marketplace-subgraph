@@ -1292,12 +1292,82 @@ export class Tutorial extends Entity {
   set soldCount(value: BigInt) {
     this.set("soldCount", Value.fromBigInt(value));
   }
+
+  get users(): Array<string> | null {
+    let value = this.get("users");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toStringArray();
+    }
+  }
+
+  set users(value: Array<string> | null) {
+    if (!value) {
+      this.unset("users");
+    } else {
+      this.set("users", Value.fromStringArray(<Array<string>>value));
+    }
+  }
+}
+
+export class User extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save User entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        "Cannot save User entity with non-string ID. " +
+          'Considering using .toHex() to convert the "id" to a string.'
+      );
+      store.set("User", id.toString(), this);
+    }
+  }
+
+  static load(id: string): User | null {
+    return changetype<User | null>(store.get("User", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get tutorials(): Array<string> | null {
+    let value = this.get("tutorials");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toStringArray();
+    }
+  }
+
+  set tutorials(value: Array<string> | null) {
+    if (!value) {
+      this.unset("tutorials");
+    } else {
+      this.set("tutorials", Value.fromStringArray(<Array<string>>value));
+    }
+  }
 }
 
 export class UserTutorials extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
+
+    this.set("user", Value.fromString(""));
+    this.set("tutorial", Value.fromString(""));
   }
 
   save(): void {
@@ -1326,20 +1396,21 @@ export class UserTutorials extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get tutorials(): Array<string> | null {
-    let value = this.get("tutorials");
-    if (!value || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
+  get user(): string {
+    let value = this.get("user");
+    return value!.toString();
   }
 
-  set tutorials(value: Array<string> | null) {
-    if (!value) {
-      this.unset("tutorials");
-    } else {
-      this.set("tutorials", Value.fromStringArray(<Array<string>>value));
-    }
+  set user(value: string) {
+    this.set("user", Value.fromString(value));
+  }
+
+  get tutorial(): string {
+    let value = this.get("tutorial");
+    return value!.toString();
+  }
+
+  set tutorial(value: string) {
+    this.set("tutorial", Value.fromString(value));
   }
 }

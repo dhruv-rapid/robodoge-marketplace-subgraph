@@ -10,6 +10,24 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
+export class AddNft extends ethereum.Event {
+  get params(): AddNft__Params {
+    return new AddNft__Params(this);
+  }
+}
+
+export class AddNft__Params {
+  _event: AddNft;
+
+  constructor(event: AddNft) {
+    this._event = event;
+  }
+
+  get id(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+}
+
 export class OwnershipTransferred extends ethereum.Event {
   get params(): OwnershipTransferred__Params {
     return new OwnershipTransferred__Params(this);
@@ -55,6 +73,25 @@ export class RoboDogeItemRemover extends ethereum.SmartContract {
     return new RoboDogeItemRemover("RoboDogeItemRemover", address);
   }
 
+  hidden(param0: BigInt): boolean {
+    let result = super.call("hidden", "hidden(uint256):(bool)", [
+      ethereum.Value.fromUnsignedBigInt(param0)
+    ]);
+
+    return result[0].toBoolean();
+  }
+
+  try_hidden(param0: BigInt): ethereum.CallResult<boolean> {
+    let result = super.tryCall("hidden", "hidden(uint256):(bool)", [
+      ethereum.Value.fromUnsignedBigInt(param0)
+    ]);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
   owner(): Address {
     let result = super.call("owner", "owner():(address)", []);
 
@@ -68,6 +105,96 @@ export class RoboDogeItemRemover extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+}
+
+export class ConstructorCall extends ethereum.Call {
+  get inputs(): ConstructorCall__Inputs {
+    return new ConstructorCall__Inputs(this);
+  }
+
+  get outputs(): ConstructorCall__Outputs {
+    return new ConstructorCall__Outputs(this);
+  }
+}
+
+export class ConstructorCall__Inputs {
+  _call: ConstructorCall;
+
+  constructor(call: ConstructorCall) {
+    this._call = call;
+  }
+
+  get _nft(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class ConstructorCall__Outputs {
+  _call: ConstructorCall;
+
+  constructor(call: ConstructorCall) {
+    this._call = call;
+  }
+}
+
+export class AddItemCall extends ethereum.Call {
+  get inputs(): AddItemCall__Inputs {
+    return new AddItemCall__Inputs(this);
+  }
+
+  get outputs(): AddItemCall__Outputs {
+    return new AddItemCall__Outputs(this);
+  }
+}
+
+export class AddItemCall__Inputs {
+  _call: AddItemCall;
+
+  constructor(call: AddItemCall) {
+    this._call = call;
+  }
+
+  get _id(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+}
+
+export class AddItemCall__Outputs {
+  _call: AddItemCall;
+
+  constructor(call: AddItemCall) {
+    this._call = call;
+  }
+}
+
+export class AddItemsCall extends ethereum.Call {
+  get inputs(): AddItemsCall__Inputs {
+    return new AddItemsCall__Inputs(this);
+  }
+
+  get outputs(): AddItemsCall__Outputs {
+    return new AddItemsCall__Outputs(this);
+  }
+}
+
+export class AddItemsCall__Inputs {
+  _call: AddItemsCall;
+
+  constructor(call: AddItemsCall) {
+    this._call = call;
+  }
+
+  get nfts(): Array<BigInt> {
+    return this._call.inputValues[0].value.toBigIntArray();
+  }
+}
+
+export class AddItemsCall__Outputs {
+  _call: AddItemsCall;
+
+  constructor(call: AddItemsCall) {
+    this._call = call;
   }
 }
 

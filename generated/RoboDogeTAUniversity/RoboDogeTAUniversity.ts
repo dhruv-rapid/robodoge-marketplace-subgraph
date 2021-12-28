@@ -500,36 +500,17 @@ export class RoboDogeTAUniversity extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  tokenURI(param0: BigInt): string {
-    let result = super.call("tokenURI", "tokenURI(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(param0)
-    ]);
-
-    return result[0].toString();
-  }
-
-  try_tokenURI(param0: BigInt): ethereum.CallResult<string> {
-    let result = super.tryCall("tokenURI", "tokenURI(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(param0)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toString());
-  }
-
-  uri(param0: BigInt): string {
+  uri(_id: BigInt): string {
     let result = super.call("uri", "uri(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(param0)
+      ethereum.Value.fromUnsignedBigInt(_id)
     ]);
 
     return result[0].toString();
   }
 
-  try_uri(param0: BigInt): ethereum.CallResult<string> {
+  try_uri(_id: BigInt): ethereum.CallResult<string> {
     let result = super.tryCall("uri", "uri(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(param0)
+      ethereum.Value.fromUnsignedBigInt(_id)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -921,6 +902,36 @@ export class UpdateMinimumTokenBalanceCall__Outputs {
   _call: UpdateMinimumTokenBalanceCall;
 
   constructor(call: UpdateMinimumTokenBalanceCall) {
+    this._call = call;
+  }
+}
+
+export class WithdrawCall extends ethereum.Call {
+  get inputs(): WithdrawCall__Inputs {
+    return new WithdrawCall__Inputs(this);
+  }
+
+  get outputs(): WithdrawCall__Outputs {
+    return new WithdrawCall__Outputs(this);
+  }
+}
+
+export class WithdrawCall__Inputs {
+  _call: WithdrawCall;
+
+  constructor(call: WithdrawCall) {
+    this._call = call;
+  }
+
+  get _address(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class WithdrawCall__Outputs {
+  _call: WithdrawCall;
+
+  constructor(call: WithdrawCall) {
     this._call = call;
   }
 }

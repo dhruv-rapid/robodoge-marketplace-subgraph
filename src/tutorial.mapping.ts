@@ -5,7 +5,7 @@ import {
   ItemRemoved,
   ItemBought,
 } from "../generated/RoboDogeTAUniversity/RoboDogeTAUniversity";
-import { Tutorial, UserTutorials } from "../generated/schema";
+import { Tutorial, UserTutorials, User } from "../generated/schema";
 
 export function handleItemAdded(event: ItemAdded): void {
   const id = event.params.id.toString();
@@ -50,7 +50,8 @@ export function handleItemBought(event: ItemBought): void {
   const tutorial = Tutorial.load(tutorialId);
 
   if (!tutorial) return;
-  tutorial.soldCount = tutorial.soldCount.plus(BigInt.fromI32(1));
+  const prevCount = tutorial.soldCount;
+  tutorial.soldCount = prevCount.plus(BigInt.fromI32(1));
 
   tutorial.save();
 
@@ -59,15 +60,12 @@ export function handleItemBought(event: ItemBought): void {
 
   if (!user) {
     user = new UserTutorials(id);
+    user.save();
   }
 
-  let userTutorials = user.tutorials;
-  if (!userTutorials) {
-    userTutorials = [];
-  }
-  userTutorials.push(tutorialId);
+  const userTutorial = new UserTutorials(`${id}-${tutorialId}`);
+  userTutorial.user = id;
+  userTutorial.tutorial = tutorialId;
 
-  user.tutorials = userTutorials;
-
-  user.save();
+  userTutorial.save();
 }

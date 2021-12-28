@@ -118,9 +118,9 @@ dataSources:
     name: RoboDogeItemRemover
     network: bsc
     source:
-      address: "0x1F6a6C65100298baEb521B544C3Ec7f71602491c"
+      address: "0x33761d751AAD7117Bd982C0B7F81e14EC331b55f"
       abi: RoboDogeItemRemover
-      startBlock: 12609164
+      startBlock: 12722345
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -140,14 +140,15 @@ dataSources:
     name: RoboDogeTAUniversity
     network: bsc
     source:
-      address: "0x8B176619f6098C6bBD73c22ba6B6F5c362BA6B2c"
+      address: "0xf86aecf1c068e01fd055e958bee8fc92c069ad63"
       abi: RoboDogeTAUniversity
-      startBlock: 12616726
+      startBlock: 12892726
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
+        - User
         - Tutorial
         - UserTutorials
       abis:
